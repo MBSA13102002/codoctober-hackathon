@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Dashboard</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
+
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Favicons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+
+    <style>
+        body {
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+        }
+
+        html {
+            height: -webkit-fill-available;
+        }
+
+        main {
+            display: flex;
+            flex-wrap: nowrap;
+            height: 100vh;
+            height: -webkit-fill-available;
+            max-height: 100vh;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+        .b-example-divider {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, .1);
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+
+        .bi {
+            vertical-align: -.125em;
+            pointer-events: none;
+            fill: currentColor;
+        }
+
+        .dropdown-toggle {
+            outline: 0;
+        }
+
+        .nav-flush .nav-link {
+            border-radius: 0;
+        }
+
+        .btn-toggle {
+            display: inline-flex;
+            align-items: center;
+            padding: .25rem .5rem;
+            font-weight: 600;
+            color: rgba(0, 0, 0, .65);
+            background-color: transparent;
+            border: 0;
+        }
+
+        .btn-toggle:hover,
+        .btn-toggle:focus {
+            color: rgba(0, 0, 0, .85);
+            background-color: #d2f4ea;
+        }
+
+        .btn-toggle::before {
+            width: 1.25em;
+            line-height: 0;
+            content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+            transition: transform .35s ease;
+            transform-origin: .5em 50%;
+        }
+
+        .btn-toggle[aria-expanded="true"] {
+            color: rgba(0, 0, 0, .85);
+        }
+
+        .btn-toggle[aria-expanded="true"]::before {
+            transform: rotate(90deg);
+        }
+
+        .btn-toggle-nav a {
+            display: inline-flex;
+            padding: .1875rem .5rem;
+            margin-top: .125rem;
+            margin-left: 1.25rem;
+            text-decoration: none;
+        }
+
+        .btn-toggle-nav a:hover,
+        .btn-toggle-nav a:focus {
+            background-color: #d2f4ea;
+        }
+
+        .scrollarea {
+            overflow-y: auto;
+        }
+
+        .fw-semibold {
+            font-weight: 600;
+        }
+
+        .lh-tight {
+            line-height: 1.25;
+        }
+
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="sidebars.css" rel="stylesheet">
+</head>
+
+<body>
+    {% macro catch(on_exception) %}
+    {{ handle_catch(caller, on_exception) }}
+    {% endmacro %}
+
+    <main>
+
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <i class="fa fa-user mx-2" aria-hidden="true" style="font-size:30px"></i>
+                <span class="fs-4">Let's Analyze</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li>
+                    <a class="nav-link text-white active" onclick="toggle(0,this)">
+                        <i class="fa fa-road" aria-hidden="true"></i>
+                        Learning Paths
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link text-white" onclick="toggle(1,this)">
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                        To Do List
+                    </a>
+
+                </li>
+
+            </ul>
+            <hr>
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                    id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="static/img/admin.jfif" alt="" width="32" height="32" class="rounded-circle me-2">
+                    <strong>{{username}}</strong>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                    <li><a class="dropdown-item">Add New Learning Paths and<br> Set your To-Do List</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <form action="/drop" method = "post">
+                        <li><button type="submit" class="dropdown-item">Sign out</button></li>
+                    </form>
+                </ul>
+            </div>
+        </div>
+
+        <div class="b-example-divider"></div>
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark cod-elem" style="width: 80%;">
+            <div class="page-wrapper">
+                <h1 class="text-white text-center">Learning Paths<i class="fa fa-plus-circle" aria-hidden="true"
+                        style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modal_learning_path_add"></i>
+                </h1>
+                <hr>
+                <div class="modal fade" id="modal_learning_path_add" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true" style="color:black">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Create New Learning Path</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <form action="/learningpath" method="post" onsubmit="return LP_Validate()">
+                            <div class="modal-body">
+                                <div class="form-floating">
+                                    <input type="text" name="LP_HTML" style="display:none" id="LP_HTML_DATA">
+                                    <input type="text" name="LP_UK" style="display:none" id="LP_Unique_Key">
+                                    <input type="text" class="form-control" name="LP_title" placeholder="name@example.com"
+                                        id="Cur_LP_Title">
+                                    <label for="floatingInput">Title</label>
+                                </div>
+                            </div>
+
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal"
+                                        data-bs-dismiss="modal">Create</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div id="all-LP-paths" class="row" style="color:black">
+                    {% call catch('') %}
+
+                    {% endcall %}
+                </div>
+
+            </div>
+            <div class="page-wrapper" style="display: none;">
+                <form action="/todolist" method="post" onsubmit="before_task_submit()">
+                    <input type="text" style="display: none;" id="html_todolist" name="html_todolist">
+                    <button class="btn btn-light my-2" style="float:right">Save Changes</button>
+                </form>
+
+                <h1 class="text-white text-center">To Do List <i class="fa fa-plus-circle" aria-hidden="true"
+                        style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modal_task_add"></i></h1>
+
+
+                <div class="modal fade" id="modal_task_add" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true" style="color:black">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Add New Task</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="title" placeholder="name@example.com"
+                                        id="Cur_Task_Title">
+                                    <label for="floatingInput">Title</label>
+                                </div>
+                                <input class="my-2" type="date" id="Cur_Task_Date" name="task-data" value="">
+                                <div id="editor_exp" style="background-color: white;">
+                                    <p>Write Task Here</p>
+                                    <p><br></p>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" onclick="Add_Task_Local()"
+                                    data-bs-dismiss="modal">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+                <div id="all-tasks" class="row" style="color:black">
+                    {% call catch('') %}
+
+                    {% endcall %}
+                </div>
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+
+
+    </main>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script>
+        var toolbarOptions = [
+            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+            [{ 'size': ['small', false, 'large', 'huge'] }],
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+            [{ 'color': [] }, { 'background': [] }],
+            [{ 'font': [] }],
+            [{ 'align': [] }],
+            ['clean', 'image', 'link', 'video']
+        ];
+
+        var quill = new Quill('#editor_exp', {
+            theme: 'snow',
+            modules: {
+                toolbar: toolbarOptions
+            },
+        });
+    </script>
+
+    <script>
+        function htmlDecode(input) {
+            var doc = new DOMParser().parseFromString(input, "text/html");
+            return doc.documentElement.textContent;
+        }
+        var all_nav_links = document.getElementsByClassName("nav-link")
+        for (let i = 0; i < all_nav_links.length; i++) {
+            all_nav_links[i].style = "cursor:pointer"
+        }
+        function toggle(index, elem) {
+
+            all_nav_links = document.getElementsByClassName("nav-link")
+            for (let i = 0; i < all_nav_links.length; i++) {
+                all_nav_links[i].classList.remove("active")
+            }
+            elem.classList.add("active")
+            all_d_flex_elems = document.getElementsByClassName("page-wrapper")
+            console.log(all_d_flex_elems.length)
+            for (let j = 0; j < all_d_flex_elems.length; j++) {
+                if (j == index) {
+
+                    all_d_flex_elems[j].style.display = "block"
+                }
+                else {
+                    all_d_flex_elems[j].style.display = "none"
+
+                }
+            }
+
+        }
+        function makeid(length) {
+            var result = '';
+            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var charactersLength = characters.length;
+            for (var i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() *
+                    charactersLength));
+            }
+            return result;
+        }
+        function Add_Task_Local() {
+            var task_id_local = makeid(10)
+            var myEditor = document.querySelector('#editor_exp')
+            var html = myEditor.children[0].innerHTML
+            var cur_task_title = document.getElementById("Cur_Task_Title").value
+            var cur_task_date = document.getElementById("Cur_Task_Date").value
+            document.getElementById("all-tasks").innerHTML += `<div class="card mx-2" style="width:13rem;cursor:pointer" id=${task_id_local}>
+                <i class="fa fa-arrow-circle-up" aria-hidden="true" style="cursor:pointer" id="up_${task_id_local}" onclick = "navigate_up(this)"></i>
+                <div class="card-body">
+                    <i class="fa fa-times-circle" aria-hidden="true" style="float: right;z-index:100" onclick= "Remove_Task('${task_id_local}')"></i>
+                    <div class="data" data-bs-toggle="modal" data-bs-target="#specific${task_id_local}">
+                        <h5 class="card-title">${cur_task_title}</h5>
+                        <input class="my-2" type="date" id="task-data" name="task-data" value="${cur_task_date}"
+                            disabled>
+                    </div>
+
+                </div>
+                <i class="fa fa-arrow-circle-down" aria-hidden="true" style="cursor:pointer" id="down_${task_id_local}" onclick = "navigate_down(this)"></i>
+            </div>
+            <div class="modal fade" id="specific${task_id_local}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true" style="color:black">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">${cur_task_title}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <input class="my-2" type="date" id="task-data" name="task-data" value="2021-10-23"
+                            disabled>
+                          ${html}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+`
+            var myEditor = document.querySelector('#editor_exp')
+            myEditor.children[0].innerHTML = ""
+            document.getElementById("Cur_Task_Title").value = ""
+            document.getElementById("Cur_Task_Date").value = ""
+        }
+        function Remove_Task(id) {
+            var a = confirm("Are you sure you want to remove this task?")
+            if (a) {
+                document.getElementById(id).remove()
+            }
+            else {
+
+            }
+        }
+        function before_task_submit() {
+            document.getElementById("html_todolist").value = document.getElementById("all-tasks").innerHTML
+        }
+        document.getElementById("all-tasks").innerHTML = htmlDecode("{{data}}")
+        
+        function navigate_up(elem) {
+            allcards = document.getElementsByClassName("card")
+            _id = elem.id.split("_")[1]
+            for (let i = 0; i < allcards.length; i++) {
+                if (allcards[i].id == _id) {
+                    id_1 = allcards[i - 1].id
+                    id_2 = allcards[i].id
+                    swap_divs(id_1, id_2)
+
+                }
+            }
+        }
+        function navigate_down(elem) {
+            allcards = document.getElementsByClassName("card")
+            _id = elem.id.split("_")[1]
+            for (let i = 0; i < allcards.length; i++) {
+                if (allcards[i].id == _id) {
+                    id_1 = allcards[i + 1].id
+                    id_2 = allcards[i].id
+                    swap_divs(id_1, id_2)
+
+                }
+            }
+
+
+        }
+        function swap_divs(id_1, id_2) {
+            try {
+                jQuery(document).ready(function () {
+
+                    div1 = jQuery(`#${id_1}`);
+                    div2 = jQuery(`#${id_2}`);
+
+                    tdiv1 = div1.clone();
+                    tdiv2 = div2.clone();
+
+                    if (!div2.is(':empty')) {
+                        div1.replaceWith(tdiv2);
+                        div2.replaceWith(tdiv1);
+                    }
+
+
+                });
+            }
+            catch (err) {
+
+            }
+
+        }
+        function LP_Validate(){
+            unique_id  = '-'+makeid(14)
+            title = document.getElementById("Cur_LP_Title").value 
+            document.getElementById("LP_Unique_Key").value = unique_id
+            document.getElementById("LP_HTML_DATA").value = `<div class="card mx-2" style="width:13rem;cursor:pointer;color:black" >
+                <form action = "/LPC/delete/${unique_id}/" method = "post" onsubmit=" return Validate_delete()">
+                <button type="submit"  style="float:right;z-index:100"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+                </form>
+                <div class="card-body" onclick="window.location.replace('/LPC/${unique_id}')">
+                    <div class="data">
+                        <h5 class="card-title">${title}</h5>
+                    </div>
+                </div>
+            </div>`
+            return true;
+
+        }
+        function Validate_delete(){
+            var is_a = confirm("Are you sure you want to remove the Learning Path?")
+            if(is_a){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        document.getElementById("all-LP-paths").innerHTML = htmlDecode("{{data_LP}}")
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

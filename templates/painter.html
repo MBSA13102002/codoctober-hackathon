@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{name}}</title>
+    <style type="text/css">
+      #container { position: relative; }
+      #imageView { border: 1px solid #000; }
+      html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+      }
+    </style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js">
+</script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  </head>
+  <body>
+    <div id="container" style="padding:5px 0px 0px 0px;">
+<div id="colorToolbar" style="border: 1px solid black; float: left;"> 
+<div id="red" style="background:red; width:50px; height:50px; float:left;"></div>
+<div style="clear: both;"></div> 
+<div id="pink" style="background:pink; width:50px; height:50px; float:left;"></div>
+<div style="clear: both;"></div> 
+<div id="fuchsia" style="background:fuchsia; width:50px; height:50px; float:left;"></div>
+<div style="clear: both;"></div> 
+<div id="orange" style="background:orange; width:50px; height:50px; float:left;"></div>
+<div style="clear: both;"></div> 
+<div id="yellow" style="background:yellow; width:50px; height:50px; float:left;"></div>
+<div style="clear: both;"></div> 
+<div id="lime" style="background:lime; width:50px; height:50px; float:left;"></div>
+<div style="clear: both;"></div> 
+<div id="green" style="background:green; width:50px; height:50px; float:left;"></div>
+<div style="clear: both;"></div> 
+<div id="blue" style="background:blue; width:50px; height:50px; float:left;"></div>
+<div style="clear: both;"></div> 
+<div id="purple" style="background:purple; width:50px; height:50px; float:left;"></div>
+<div style="clear: both;"></div> 
+<div id="black" style="background:black; width:50px; height:50px; 
+float:left; border: 1px dashed white;"></div>
+<div style="clear: both;"></div> 
+<div id="white" style="background:white; width:50px; height:50px; float:left;"></div>
+<div style="clear: both;"></div> 
+            <hr/> 
+<div id="fill" style="width:50px; height:50px; float:left;">
+<img src="data:image/png;base64,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" width="50" height="50" ></div>
+
+        </div> 
+        <h1 class="text-center">SET YOUR PATH -> {{name}}</h1>
+        <form action="/LPC/{{key}}/" method = "post" onsubmit = "return onSave()">
+            <input type="text" id = "canvas_base64data" name = "base64DATA" style="display: none;">
+            <button type="submit" class="btn btn-primary mx-2 my-1" style="float:right">SAVE ALL</button>
+        </form>
+        <a href = "/" class="btn btn-primary mx-2 my-1">BACK</a>
+        <button href = "/" class="btn btn-primary mx-2 my-1" onclick = "clr_canvas()">Clear Canvas</button>
+        <button class="btn btn-primary" onclick = "Save_Canvas()">Save Pic</button>
+        <div id="canvasDiv" style="float: left;">
+          <canvas id="imageView">
+            <p>Unfortunately, your browser is currently unsupported by our web 
+            application.  We are sorry for the inconvenience. Please use one of the 
+            supported browsers listed below, or draw the image you want using an 
+            offline tool.</p>
+            <p>Supported browsers: <a href="http://www.opera.com">Opera</a>, <a 
+              href="http://www.mozilla.com">Firefox</a>, <a 
+              href="http://www.apple.com/safari">Safari</a>, and <a 
+              href="http://www.konqueror.org">Konqueror</a>.</p>
+          </canvas>        
+        </div>
+<div id="stats" style="font-size:8pt; padding-left: 50px; float: left;">0 0</div>        
+    </div>
+  </body>
+<script>
+    if (window.addEventListener) {
+        window.addEventListener('load', function () { init(); });
+    }
+    var enableDraw = false;
+    var started = false;
+    var canvas, context;
+    var stampId = '';
+    var lastColor = 'black';
+    var lastStampId = '';
+    
+    function init() {
+        canvas = $('#imageView').get(0);
+        context = canvas.getContext('2d');
+        var image = new Image();
+        image.onload = function () {
+            context.drawImage(image, 0, 0);
+        };
+        image.src ="{{base64}}"
+        // Auto-adjust canvas size to fit window.
+        canvas.width = window.innerWidth - 75;
+        canvas.height = window.innerHeight - 75;
+        canvas.addEventListener('mousedown', function (e) { enableDraw = true; }, false);
+        canvas.addEventListener('mouseup', function (e) { enableDraw = false; started = false; }, false);
+        //$('#container').get(0).addEventListener('mousemove', onMouseMove, false);
+        canvas.addEventListener('mousemove', onMouseMove, false);
+        canvas.addEventListener('click', onClick, false);
+    
+        // Add events for toolbar buttons.
+        $('#red').get(0).addEventListener('click', function (e) { onColorClick(e.target.id); }, false);
+        $('#pink').get(0).addEventListener('click', function (e) { onColorClick(e.target.id); }, false);
+        $('#fuchsia').get(0).addEventListener('click', function (e) { onColorClick(e.target.id); }, false);
+        $('#orange').get(0).addEventListener('click', function (e) { onColorClick(e.target.id); }, false);
+        $('#yellow').get(0).addEventListener('click', function (e) { onColorClick(e.target.id); }, false);
+        $('#lime').get(0).addEventListener('click', function (e) { onColorClick(e.target.id); }, false);
+        $('#green').get(0).addEventListener('click', function (e) { onColorClick(e.target.id); }, false);
+        $('#blue').get(0).addEventListener('click', function (e) { onColorClick(e.target.id); }, false);
+        $('#purple').get(0).addEventListener('click', function (e) { onColorClick(e.target.id); }, false);
+        $('#black').get(0).addEventListener('click', function (e) { onColorClick(e.target.id); }, false);
+        $('#white').get(0).addEventListener('click', function (e) { onColorClick(e.target.id); }, false);
+        //  $('#cat').get(0).addEventListener('click', function(e) { onStamp(e.target.id); }, false);
+        //  $('#dragonfly').get(0).addEventListener('click', function(e) { onStamp(e.target.id); }, false);
+        //  $('#ladybug').get(0).addEventListener('click', function(e) { onStamp(e.target.id); }, false);
+        //  $('#heart').get(0).addEventListener('click', function(e) { onStamp(e.target.id); }, false);
+        //  $('#dog').get(0).addEventListener('click', function(e) { onStamp(e.target.id); }, false);
+        $('#fill').get(0).addEventListener('click', function (e) { onFill(); }, false);
+        $('#save').get(0).addEventListener('click', function (e) { onSave(); }, false);
+    }
+    
+    function onMouseMove(ev) {
+        var x, y;
+    
+        // Get the mouse position.
+        if (ev.layerX >= 0) {
+            // Firefox
+            x = ev.layerX;
+            y = ev.layerY - 5;
+        }
+        else if (ev.offsetX >= 0) {
+            // Opera
+            x = ev.offsetX;
+            y = ev.offsetY - 5;
+        }
+        if (enableDraw) {
+            if (!started) {
+                started = true;
+    
+                context.beginPath();
+                context.moveTo(x, y);
+            }
+            else {
+                context.lineTo(x, y);
+                context.stroke();
+            }
+        }
+        $('#stats').text(x + ', ' + y);
+    }
+    
+    function onClick(e) {
+        if (stampId.length > 0) {
+            context.drawImage($(stampId).get(0), e.pageX - 90, e.pageY - 60, 80, 80);
+        }
+    }
+    
+    function onColorClick(color) {
+        // Start a new path to begin drawing in a new color.
+        context.closePath();
+        context.beginPath();
+    
+        // Select the new color.
+        context.strokeStyle = color;
+    
+        // Highlight selected color.
+        var borderColor = 'white';
+        if (color == 'white' || color == 'yellow') {
+            borderColor = 'black';
+        }
+    
+        $('#' + lastColor).css("border", "0px dashed white");
+        $('#' + color).css("border", "1px dashed " + borderColor);
+    
+        // Store color so we can un-highlight it next time around.
+        lastColor = color;
+    }
+    
+    function onFill() {
+        // Start a new path to begin drawing in a new color.
+        context.closePath();
+        context.beginPath();
+    
+        context.fillStyle = context.strokeStyle;
+        context.fillRect(0, 0, canvas.width, canvas.height);
+    }
+    
+    function onStamp(id) {
+        // Update the stamp image.
+        stampId = '#' + id;
+        if (lastStampId == stampId) {
+            // User clicked the selected stamp again, so deselect it.
+            stampId = '';
+        }
+    
+        $(lastStampId).css("border", "0px dashed white");
+        $(stampId).css("border", "1px dashed black");
+    
+        // Store stamp so we can un-highlight it next time around.
+        lastStampId = stampId;
+    }
+    
+    function onSave() {
+        var img = canvas.toDataURL("image/png");
+        //  var link = document.createElement("a");
+    
+        //  document.body.appendChild(link); // for Firefox
+    
+        //  link.setAttribute("href", img);
+        //  link.setAttribute("download", "download.png");
+        //  link.click();
+        document.getElementById("canvas_base64data").value=  img;
+        return true;
+    }
+    function Save_Canvas(){
+        var img = canvas.toDataURL("image/png");
+          var link = document.createElement("a");
+    
+         document.body.appendChild(link); // for Firefox
+    
+         link.setAttribute("href", img);
+      link.setAttribute("download", "{{key}}.png");
+          link.click();
+    }
+    function clr_canvas(){
+        context.clearRect(0, 0, canvas.width, canvas.height);
+    }
+</script>
+</html>
