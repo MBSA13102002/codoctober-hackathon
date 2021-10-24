@@ -36,6 +36,7 @@ def index():
             user_ = auth.sign_in_with_email_and_password(uname ,upass)
             session['user'] = user_['localId']
             session['email'] = user_['email']
+            g.user  = session['user']
             return redirect(url_for('dashboard'))
         except:
             return redirect(url_for('dashboard'))
@@ -81,7 +82,7 @@ def signup():
             })
             return render_template("success.html")
         except Exception as e:
-            print(e)
+            pass
             return render_template(url_for('index'))
     return render_template("signup.html")
 @app.route('/passchange',methods = ['GET','POST'])
