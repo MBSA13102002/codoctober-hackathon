@@ -151,5 +151,3 @@ def before_request():
     if 'user' in session:
         g.user = session['user']
 
-if __name__ =='__main__':
-    app.run(debug=True)
