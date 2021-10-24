@@ -129,6 +129,7 @@ def add_task():
             "data":html_data
         })
         return redirect(url_for('dashboard'))
+    return redirect(url_for('dashboard'))
 @app.route("/learningpath",methods = ['GET','POST'])
 def add_LP():
     if(request.method=='POST' and g.user):
