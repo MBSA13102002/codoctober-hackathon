@@ -98,11 +98,15 @@ def LPC(key):
     if (request.method=='POST'):
         temp_base64data = request.form.get("base64DATA")
         try:
-            name  =  db.child("Users").child(g.user).child("Learning_Paths").child(key).child("title").get().val()
-            db.child("Users").child(g.user).child("Learning_Paths").child(key).update({
-                "base64_data":temp_base64data
-            })
-            return render_template("painter.html",name = name,key = key,base64 = temp_base64data)
+            if(name!=None):
+               name  =  db.child("Users").child(g.user).child("Learning_Paths").child(key).child("title").get().val()
+               db.child("Users").child(g.user).child("Learning_Paths").child(key).update({
+                  "base64_data":temp_base64data
+               })
+            
+               return render_template("painter.html",name = name,key = key,base64 = temp_base64data)
+            else:
+               return render_template("doesnotexist.html")
         except:
             return render_template("doesnotexist.html")
 
