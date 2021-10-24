@@ -128,7 +128,7 @@ def add_task():
         db.child("Users").child(g.user).child("Tasks").child("-MmiB3RyCMnJ7cuoTB5s").update({
             "data":html_data
         })
-    return redirect(url_for('dashboard'))
+        return redirect(url_for('dashboard'))
 @app.route("/learningpath",methods = ['GET','POST'])
 def add_LP():
     if(request.method=='POST' and g.user):
