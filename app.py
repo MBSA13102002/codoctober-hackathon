@@ -142,7 +142,7 @@ def add_LP():
         db.child("Users").child(g.user).child("Learning_Paths").child(key).set({
             'title':title,
             "key":key,
-            "base64_data":""
+            "base64_data":" "
         })
         html_card_data = request.form.get("LP_HTML")
         db.child("Users").child(g.user).child("Learning_Paths").child(key).update({
