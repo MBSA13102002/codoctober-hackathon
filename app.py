@@ -109,8 +109,6 @@ def LPC(key):
     try:
         name  =  db.child("Users").child(g.user).child("Learning_Paths").child(key).child("title").get().val()
         base64data  =  db.child("Users").child(g.user).child("Learning_Paths").child(key).child("base64_data").get().val()
-        if(name==None):
-            return render_template("doesnotexist.html")
         return render_template("painter.html",name = name,key = key,base64 = base64data)
     except:
         return render_template("doesnotexist.html")
@@ -146,6 +144,7 @@ def add_LP():
             'html_data':html_card_data
         })
         return redirect(url_for('LPC',key = key))
+
 @app.before_request
 def before_request():
     g.user = None
